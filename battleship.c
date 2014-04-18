@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#define OS 0 //Included in compilation: gcc battleship.c -D OS=1
+#define OS 1 
 
 typedef struct{
     int j;
@@ -32,6 +32,8 @@ void delay();
 
 int main(int argc, char ** argv)
 {
+        printf("OS is %d\n",OS);
+
         FILE * fp = NULL;
         if(argc == 1)
         {
@@ -489,6 +491,17 @@ int main(int argc, char ** argv)
                         if(sunk == num_ships) //All ships were sunk
                         {
                             printf("You won! All ships were sunk!\n");
+
+                            /*
+                            ***** FREE MEMORY *****
+                            */
+                            for(e=0;e<num_ships;e++)
+                            {
+                                free(ship_names[e]);
+                                free(ships[e].parts);
+                                free(ships[e].parts_state);
+                            }
+                            free(ship_names);
                             return 0;
                         }
                     }
