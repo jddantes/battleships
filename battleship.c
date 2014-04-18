@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#define OS 1
+#define OS 0 //Included in compilation: gcc battleship.c -D OS=1
 
 typedef struct{
     int j;
@@ -235,11 +235,11 @@ int main(int argc, char ** argv)
         }*/
 
         //Print table
-
+        /*
         for(i=0; i<table_size; i++)
         {
             printf("%d (%d,%d)\n",table[i].ship_id, table[i].coord.j, table[i].coord.i);
-        }
+        }*/
 
         /*
         ***** START GETTING INPUT *****
@@ -327,9 +327,18 @@ int main(int argc, char ** argv)
             printf("Ships sunk: %d\n\n",sunk);
             for(i=0; i<num_ships; i++)
             {
+                //printf("ID is %02d ASDFASDF",ships[i].id);
+                /*
+                    HELP
+                    Rambos on linux. Gets fixed with newline for some reason.
+                    printf("ID is %02d ASDFASDF\n");
+                */
                 printf("%02d",ships[i].id);
+
                 if(strlen(ships[i].ship_name))
                     printf(" %s",ships[i].ship_name);
+                else
+                    printf("");
                 if(ships[i].afloat == 0)
                 {
                     printf(" [SUNK]  \n");
