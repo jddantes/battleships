@@ -3,23 +3,10 @@
 #include <ctype.h>
 #include <string.h>
 
-#ifndef OS
-#define OS 1 /*Define during compilation: gcc battleship.c -D OS=0*/
-#endif
-
-#if OS==0
+#define OS 0
 
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_RESET "\x1b[0m"
-
-#else
-
-#define ANSI_COLOR_RED ""
-#define ANSI_COLOR_RESET ""
-
-#endif
-
-
 
 typedef struct{
     int j;
@@ -348,6 +335,12 @@ int main(int argc, char ** argv)
             printf("Ships sunk: %d\n\n",sunk);
             for(i=0; i<num_ships; i++)
             {
+                //printf("ID is %02d ASDFASDF",ships[i].id);
+                /*
+                    HELP
+                    Rambos on linux. Gets fixed with newline for some reason.
+                    printf("ID is %02d ASDFASDF\n");
+                */
                 printf("%02d ",ships[i].id);
                 //printf("%s\n",ships[i].ship_name);
                 
@@ -358,8 +351,7 @@ int main(int argc, char ** argv)
                 
                 if(ships[i].afloat == 0)
                 {
-                    if(OS==0)
-                        printf(ANSI_COLOR_RED" [SUNK]  \n"ANSI_COLOR_RESET);
+                    printf(ANSI_COLOR_RED" [SUNK]  \n"ANSI_COLOR_RESET);
                 }
                 else
                 {
